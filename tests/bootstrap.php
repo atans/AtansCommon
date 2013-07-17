@@ -10,6 +10,7 @@ if (file_exists('../vendor/autoload.php')) {
     throw new RuntimeException('vendor/autoload.php could not be found. Did you run `php composer.phar install`?');
 }
 
+
 $loader->add('AtansCommonTest', __DIR__);
 
 if (!$config = @include 'configuration.php') {
