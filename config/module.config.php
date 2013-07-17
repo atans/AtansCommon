@@ -3,7 +3,12 @@
 return array(
     'controller_plugins' => array(
         'invokables' => array(
-            'ajax' => 'AtansModule\Controller\Plugin\Ajax',
+            'ajax' => 'AtansCommon\Controller\Plugin\Ajax',
+        ),
+    ),
+    'view_manager' => array(
+        'strategies' => array(
+            'ViewJsonStrategy',
         ),
     ),
 );
