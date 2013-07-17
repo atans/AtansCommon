@@ -9,21 +9,19 @@ Ajax contoller plugin
     {
         // Text
         return $this->ajax()->text('text');
-        // output: text
+        // Output: text
     }
 
     public fucntion statusTestAction()
     {
         return $this->ajax()->status('ok', 'Ok message');
-        // output : {"status" : "ok", "message" : "Ok message"}
+        // Output : {"status" : "ok", "message" : "Ok message"}
 
-        // OR
         return $this->ajax()->status('ok', 'Ok message', array('data' => 'Returns data'));
-        // output : {"status" : "ok", "message" : "Ok message", "data" => "Retruns data"}
+        // Output : {"status" : "ok", "message" : "Ok message", "data" => "Retruns data"}
 
-        OR
         return $this->ajax()->status('ok', array('data' => 'Returns data'));
-        // output : {"status" : "ok", "data" => "Retruns data"}
+        // Output : {"status" : "ok", "data" => "Retruns data"}
     }
 
     public fucntion successTestAction()
@@ -32,9 +30,17 @@ Ajax contoller plugin
         // output : {"success" : true, "message" : "Ok message", "data" => "Retruns data"}
 
         return $this->ajax()->success(false, 'False message');
-        // output : {"success" : false, "message" : "False message"}
+        // Output : {"success" : false, "message" : "False message"}
 
         return $this->ajax()->success(true, array('data' => 'Returns data'));
-        // output : {"success" : true, "data" => "Retruns data"}
+        // Output : {"success" : true, "data" => "Retruns data"}
     }
 ```
+
+
+String library
+--------------
+```php
+    echo \AtansCommon\Text\String::cut('This is a longer text', 6);
+    // output : This i...
+``php
