@@ -7,6 +7,11 @@ use Zend\View\Model\JsonModel;
 
 class Ajax extends AbstractPlugin
 {
+    const CONTENT_TYPE_HTML       = 'text/html; charset=%s';
+    const CONTENT_TYPE_TEXT_PLAIN = 'text/plain';
+
+    const ENCODING     = 'utf-8';
+
     const TYPE_STATUS  = 'status';
     const TYPE_SUCCESS = 'success';
     const KEY_MESSAGE  = 'message';
@@ -40,6 +45,16 @@ class Ajax extends AbstractPlugin
     }
 
     /**
+     * @param  string $html
+     * @param  string $encoding
+     * @return Response
+     */
+    public function html($html, $encoding = self::ENCODING)
+    {
+        return $this->response($html, sprintf(self::CONTENT_TYPE_HTML, $encoding));
+    }
+
+    /**
      * Returns Response
      *
      * @param  string $text
@@ -47,14 +62,7 @@ class Ajax extends AbstractPlugin
      */
     public function text($text)
     {
-        if ($this->noCache) {
-            $this->noCache();
-        }
-
-        $response = $this->getResponse();
-        $response->setContent($text);
-
-        return $response;
+        return $this->response($text, self::CONTENT_TYPE_TEXT_PLAIN);
     }
 
     /**
@@ -143,6 +151,25 @@ class Ajax extends AbstractPlugin
     }
 
     /**
+     * Set reponse content
+     *
+     * @param $content
+     * @return $this
+     */
+    public function response($content, $contentType)
+    {
+        if ($this->noCache) {
+            $this->noCache();
+        }
+
+        $response = $this->getResponse();
+        $response->getHeaders()->addHeaderLine('Content-Type', $contentType);
+        $response->setContent($content);
+
+        return $response;
+    }
+
+    /**
      * Get jsonModel
      *
      * @return JsonModel
@@ -197,6 +224,7 @@ class Ajax extends AbstractPlugin
      */
     protected function noCache()
     {
+        var_dump(132);
         $headers = $this->getResponse()->getHeaders();
         $headers->addHeaders(array(
             'Expires'       => 'Mon, 26 Jul 1997 05:00:00 GMT',
