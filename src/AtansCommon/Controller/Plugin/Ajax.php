@@ -30,7 +30,7 @@ class Ajax extends AbstractPlugin
      * Returns $this
      *
      * @param  bool $noCache
-     * @return JsonCallback
+     * @return Ajax
      */
     public function __invoke($noCache = true)
     {
@@ -65,9 +65,9 @@ class Ajax extends AbstractPlugin
      * @param array             $data
      * @return JsonModel
      */
-    public function status($status, $message = null, $data = null)
+    public function status($status, $message = null, array $data = null)
     {
-        return $this->callback(static::TYPE_STATUS, $status, $message, $data);
+        return $this->jsonCallback(static::TYPE_STATUS, $status, $message, $data);
     }
 
     /**
@@ -78,9 +78,9 @@ class Ajax extends AbstractPlugin
      * @param array             $data
      * @return JsonModel
      */
-    public function success($status, $message = null, $data = null)
+    public function success($status, $message = null, array $data = null)
     {
-        return $this->callback(static::TYPE_SUCCESS, $status, $message, $data);
+        return $this->jsonCallback(static::TYPE_SUCCESS, $status, $message, $data);
     }
 
     /**
@@ -92,34 +92,38 @@ class Ajax extends AbstractPlugin
      * @param  array             $data
      * @return JsonModel
      */
-    public function callback($type, $typeValue, $message = null, array $data = null)
+    public function jsonCallback($type, $typeValue, $message = null, array $data = null)
     {
         if ($this->noCache) {
             $this->noCache();
         }
 
         $this->getJsonModel()->setVariable($type, $typeValue);
-        if ($message !== null) {
+
+        if (!is_null($message)) {
             if (is_array($message)) {
-                $this->setData($message);
+                $this->setData($type, $message);
             } elseif (is_string($message)) {
                 $this->getJsonModel()->setVariable(static::KEY_MESSAGE, $message);
             }
         }
-        $this->setData($data);
+        $this->setData($type, $data);
 
         return $this->getJsonModel();
     }
 
     /**
-     * @param array $data
-     * @return $this
+     * Set data
+     *
+     * @param  string $type
+     * @param  array $data
+     * @return Ajax
      */
-    public function setData($data)
+    public function setData($type, $data)
     {
-        if ($data !== null && is_array($data) && count($data) > 0) {
+        if (!is_null($data) && is_array($data) && count($data) > 0) {
             foreach ($data as $key => $value) {
-                if (!in_array($key, array(static::TYPE_STATUS, static::TYPE_SUCCESS, static::KEY_MESSAGE))) {
+                if (!in_array($key, array($type, static::KEY_MESSAGE))) {
                     $this->getJsonModel()->setVariable($key, $value);
                 }
             }
