@@ -109,7 +109,12 @@ class Ajax extends AbstractPlugin
         }
         $this->setData($type, $data);
 
-        return $this->getJsonModel();
+        $jsonModel = $this->getJsonModel();
+
+        // Reset JsonModel
+        $this->jsonModel = null;
+
+        return $jsonModel;
     }
 
     /**
@@ -122,10 +127,16 @@ class Ajax extends AbstractPlugin
     public function setData($type, $data)
     {
         if (!is_null($data) && is_array($data) && count($data) > 0) {
+            $jsonModel = $this->getJsonModel();
             foreach ($data as $key => $value) {
-                if (!in_array($key, array($type, static::KEY_MESSAGE))) {
-                    $this->getJsonModel()->setVariable($key, $value);
+                // Skip key is (status, succes), message is not a null value
+                if (
+                    in_array($key, array($type)) ||
+                    $key === static::KEY_MESSAGE && !is_null($jsonModel->getVariable(static::KEY_MESSAGE, null))
+                ) {
+                    continue;
                 }
+                $jsonModel->setVariable($key, $value);
             }
         }
         return $this;
