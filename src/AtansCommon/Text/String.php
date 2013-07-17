@@ -29,7 +29,7 @@ class String
      * @param  string string $encoding
      * @return int
      */
-    public function length($string, $encoding = self::ENCODING)
+    public static function length($string, $encoding = self::ENCODING)
     {
         return mb_strlen($string, $encoding);
     }
@@ -43,7 +43,7 @@ class String
      * @param  string $encoding
      * @return string
      */
-    public function sub($string, $start, $length = null, $encoding = self::ENCODING)
+    public static function sub($string, $start, $length = null, $encoding = self::ENCODING)
     {
         if (is_null($length)) {
             $length = mb_strlen($string, $encoding) - $start;
