@@ -1,5 +1,7 @@
 AtansCommon
 ===========
+[![Master Branch Build Status](https://secure.travis-ci.org/atans/AtansCommon.png?branch=master)]
+
 The Atans library
 
 Ajax contoller plugin
