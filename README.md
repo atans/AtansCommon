@@ -1,11 +1,10 @@
-AtansCommon
-===========
-[![Master Branch Build Status](https://secure.travis-ci.org/atans/AtansCommon.png?branch=master)]
+### AtansCommon
+
+Master: [![Build Status](https://secure.travis-ci.org/atans/AtansCommon.png?branch=master)](http://travis-ci.org/atans/AtansCommon)
 
 The Atans library
 
-Ajax contoller plugin
----------------------
+## Ajax contoller plugin
 ```php
     public function textAction()
     {
@@ -40,9 +39,8 @@ Ajax contoller plugin
 ```
 
 
-String library
---------------
+## String library
 ```php
     echo \AtansCommon\Text\String::cut('This is a longer text', 6);
     // output : This i...
-``php
+``
