@@ -9,9 +9,9 @@ class Ajax extends AbstractPlugin
 {
     const CONTENT_TYPE_HTML       = 'text/html; charset=%s';
     const CONTENT_TYPE_TEXT_PLAIN = 'text/plain; charset=%s';
-    const CONTENT_TYPE_JSON        = "application/json; charset=%s";
+    const CONTENT_TYPE_JSON       = "application/json; charset=%s";
 
-    const ENCODING     = 'utf-8';
+    const ENCODING = 'utf-8';
 
     const TYPE_STATUS  = 'status';
     const TYPE_SUCCESS = 'success';
