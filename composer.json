@@ -1,6 +1,6 @@
 {
     "name": "atans/atans-common",
-    "description" : "An sample user module for Zend Framework 2",
+    "description" : "AtansCommon for Zend Framework 2",
     "type" : "library",
     "keywords" : [
         "zf2",
