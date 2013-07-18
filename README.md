@@ -56,4 +56,4 @@ The Atans library
 ```php
     echo \AtansCommon\Text\String::cut('This is a longer text', 6);
     // output : This i...
-``
+```
