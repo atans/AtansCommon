@@ -8,7 +8,8 @@ use Zend\View\Model\JsonModel;
 class Ajax extends AbstractPlugin
 {
     const CONTENT_TYPE_HTML       = 'text/html; charset=%s';
-    const CONTENT_TYPE_TEXT_PLAIN = 'text/plain';
+    const CONTENT_TYPE_TEXT_PLAIN = 'text/plain; charset=%s';
+    const CONTENT_TYPE_JSON        = "application/json; charset=%s";
 
     const ENCODING     = 'utf-8';
 
@@ -60,9 +61,9 @@ class Ajax extends AbstractPlugin
      * @param  string $text
      * @return Response
      */
-    public function text($text)
+    public function text($text, $encoding = self::ENCODING)
     {
-        return $this->response($text, self::CONTENT_TYPE_TEXT_PLAIN);
+        return $this->response($text, sprintf(self::CONTENT_TYPE_TEXT_PLAIN, $encoding));
     }
 
     /**
@@ -121,6 +122,7 @@ class Ajax extends AbstractPlugin
 
         // Reset JsonModel
         $this->jsonModel = null;
+        $this->getResponse()->getHeaders()->addHeaderLine('Content-Type', sprintf(self::CONTENT_TYPE_JSON, self::ENCODING));
 
         return $jsonModel;
     }
@@ -224,13 +226,11 @@ class Ajax extends AbstractPlugin
      */
     protected function noCache()
     {
-        var_dump(132);
         $headers = $this->getResponse()->getHeaders();
         $headers->addHeaders(array(
-            'Expires'       => 'Mon, 26 Jul 1997 05:00:00 GMT',
-            'Cache-Control' => 'no-store, no-cache, must-revalidate',
+            'Cache-Control' => 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0',
+            'Expires'       => 'Thu, 19 Nov 1981 08:52:00 GMT',
             'Pragma'        => 'no-cache',
-
         ));
     }
 }

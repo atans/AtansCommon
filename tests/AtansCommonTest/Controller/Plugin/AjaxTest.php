@@ -26,13 +26,24 @@ class AjaxTest extends PHPUnit_Framework_TestCase
         $this->jsonRenderer = new JsonRenderer();
     }
 
+    public function testHtml()
+    {
+        $response = new Response();
+        $response->setContent('<strong>html</strong>');
+        $this->assertSame(
+            $response->getContent(),
+            $this->ajax->html('<strong>html</strong>')->getContent(),
+            'Html output'
+        );
+    }
+
     public function testText()
     {
         $response = new Response();
         $response->setContent('Text');
         $this->assertSame(
-            $this->ajax->text('Text')->getContent(),
             $response->getContent(),
+            $this->ajax->text('Text')->getContent(),
             'Text output'
         );
     }
