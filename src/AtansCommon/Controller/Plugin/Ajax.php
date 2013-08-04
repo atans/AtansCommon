@@ -33,7 +33,7 @@ class Ajax extends AbstractPlugin
     protected $response;
 
     /**
-     * Returns $this
+     * Returns Ajax
      *
      * @param  bool $noCache
      * @return Ajax
@@ -46,6 +46,8 @@ class Ajax extends AbstractPlugin
     }
 
     /**
+     * Response html
+     *
      * @param  string $html
      * @param  string $encoding
      * @return Response
@@ -59,6 +61,7 @@ class Ajax extends AbstractPlugin
      * Returns Response
      *
      * @param  string $text
+     * @param  string $encoding
      * @return Response
      */
     public function text($text, $encoding = self::ENCODING)
@@ -153,10 +156,11 @@ class Ajax extends AbstractPlugin
     }
 
     /**
-     * Set reponse content
+     * Set response content
      *
-     * @param $content
-     * @return $this
+     * @param  string $content
+     * @param  string $contentType
+     * @return Ajax
      */
     public function response($content, $contentType)
     {
@@ -224,7 +228,7 @@ class Ajax extends AbstractPlugin
     /**
      * No cache header
      */
-    protected function noCache()
+    public function noCache()
     {
         $headers = $this->getResponse()->getHeaders();
         $headers->addHeaders(array(
