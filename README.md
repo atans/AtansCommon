@@ -4,7 +4,7 @@ Master: [![Build Status](https://secure.travis-ci.org/atans/AtansCommon.png?bran
 
 The Atans library
 
-- 0.1.0 (18/7/2013)
+- 0.1.1 (4/8/2013)
 
 ## Ajax contoller plugin
 ```php
