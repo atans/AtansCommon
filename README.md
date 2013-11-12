@@ -4,7 +4,8 @@ Master: [![Build Status](https://secure.travis-ci.org/atans/AtansCommon.png?bran
 
 The Atans library
 
-- 0.1.1 (4/8/2013)
+- 0.1.1 (2013-8-4)
+- 0.1.2 (2013-11-12)
 
 ## Ajax contoller plugin
 ```php
@@ -58,7 +59,7 @@ The Atans library
     // output : This i...
 ```
 
-## View widget
+## View widgets
 
 ### Flash messenger Alert
 
@@ -146,7 +147,6 @@ html output:
   <li><a href="/user?page=3&keyword=test">3</a></li>
   <li><a href="/user?page=2&keyword=test">&raquo;</a></li>
 </ul>
-
 ```
 
 
