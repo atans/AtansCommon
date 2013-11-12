@@ -1,0 +1,70 @@
+<?php
+$paginationClass    = isset($this->paginationClass) && strlen($this->paginationClass) ? ' ' . $this->paginationClass: '';
+$params             = is_array($this->params) && count($this->params) ? $this->params: array();
+$options            = is_array($this->options) && count($this->options) ? $this->options: array();
+$reuseMatchedParams = isset($this->reuseMatchedParams) && $this->reuseMatchedParams ? true : false;
+
+$_options = function ($page) use ($options) {
+    if (!isset($options['query'])) {
+        $options['query'] = array();
+    }
+    $options['query']['page'] = $page;
+
+    return $options;
+};
+?>
+<ul class="pagination<?php echo $paginationClass ?>">
+    <li>
+        <span class="text-muted">
+            <?php echo $this->totalItemCount; ?>
+        </span>
+    </li>
+    <!-- First page link -->
+    <?php if ($this->firstPageInRange > 1): ?>
+        <li>
+            <a href="<?php echo $this->url($this->route, $params, $_options(1), $reuseMatchedParams); ?>">
+                <?php echo $this->first;?>...
+            </a>
+        </li>
+    <?php endif; ?>
+
+    <!-- Previous page link -->
+    <?php if (isset($this->previous)): ?>
+        <li>
+            <a href="<?php echo $this->url($this->route, $params, $_options($this->previous), $reuseMatchedParams); ?>">&laquo;</a>
+        </li>
+    <?php endif; ?>
+
+    <!-- Numbered page links -->
+    <?php foreach ($this->pagesInRange as $page): ?>
+        <?php if ($page != $this->current): ?>
+            <li>
+                <a href="<?php echo $this->url($this->route, $params, $_options($page), $reuseMatchedParams); ?>">
+                    <?php echo $page; ?>
+                </a>
+            </li>
+        <?php else: ?>
+            <li class="active">
+                <span><?php echo $page; ?></span>
+            </li>
+        <?php endif; ?>
+    <?php endforeach; ?>
+
+    <!-- Next page link -->
+    <?php if (isset($this->next)): ?>
+        <li>
+            <a href="<?php echo $this->url($this->route, $params, $_options($this->next), $reuseMatchedParams); ?>">
+                &raquo;
+            </a>
+        </li>
+    <?php endif; ?>
+
+    <!-- Last page link -->
+    <?php if ($this->lastPageInRange < $this->last): ?>
+        <li>
+            <a href="<?php echo $this->url($this->route, $params, $_options($this->last), $reuseMatchedParams); ?>">
+                ...<?php echo $this->last;?>
+            </a>
+        </li>
+    <?php endif;?>
+</ul>

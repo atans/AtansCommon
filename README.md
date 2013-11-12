@@ -57,3 +57,98 @@ The Atans library
     echo \AtansCommon\Text\String::cut('This is a longer text', 6);
     // output : This i...
 ```
+
+## View widget
+
+### Flash messenger Alert
+
+Controller:
+
+```php
+    public function indexAction()
+    {
+        $this->flashMessenger()
+             ->setNamespace('application-index')
+             ->addSuccessMessage('Message text');
+
+        ...
+
+        return array();
+    }
+```
+
+View:
+
+```php
+    //application/index/index.phtml
+    <?php echo $this->render('alert/bootstrap', array('namespace' => 'application-index')) ?>
+    ...
+```
+
+Html output:
+
+```html
+    <div class="alert alert-success">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      message text
+    </div>
+    ...
+```
+
+### Boostrap navbar
+
+
+```php
+    // application/layout/layout.phtml
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+            ...
+            <div class="collapse navbar-collapse">
+                <?php echo $this->navigation('navigation')->menu()->setPartial(array('navigation/bootstrap', 'default'))->render() ?>
+            </div>
+        </div>
+    </nav>
+```
+
+### Bootstrap pagination
+
+php
+
+```php
+    // user/user/index.phtml
+    <?php
+    if (count($this->paginator)) {
+        echo $this->paginationControl(
+            $this->paginator,
+            'Sliding',
+            'pagination/query',
+            array(
+                'route' => 'user',
+                'options' => array(
+                    'query' => array(
+                        'keyword' => $keyword,
+                    ),
+                ),
+            )
+        );
+    }
+    ?>
+```
+
+html output:
+
+```html
+<ul class="pagination">
+  <li class="disabled"><a href="#">&laquo;</a></li>
+  <li><a href="/user?page=1&keyword=test">1</a></li>
+  <li><a href="/user?page=2&keyword=test">2</a></li>
+  <li><a href="/user?page=3&keyword=test">3</a></li>
+  <li><a href="/user?page=2&keyword=test">&raquo;</a></li>
+</ul>
+
+```
+
+
+
+

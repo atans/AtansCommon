@@ -1,0 +1,36 @@
+<?php
+$namespace      = isset($this->namespace) ?  $this->namespace : null;
+$flashMessenger = $this->flashMessenger()->getPluginFlashMessenger();
+
+if ($namespace) {
+    $flashMessenger->setNamespace($namespace);
+}
+?>
+
+<?php if ($message = $flashMessenger->hasMessages()) :?>
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <?php echo $this->htmlList($flashMessenger->getMessages(), false, array('class' => 'list-unstyled'))?>
+    </div>
+<?php endif?>
+
+<?php if ($message = $flashMessenger->hasInfoMessages()) :?>
+    <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <?php echo $this->htmlList($flashMessenger->getInfoMessages(), false, array('class' => 'list-unstyled'))?>
+    </div>
+<?php endif?>
+
+<?php if ($message = $flashMessenger->hasSuccessMessages()) :?>
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <?php echo $this->htmlList($flashMessenger->getSuccessMessages(), false, array('class' => 'list-unstyled'))?>
+    </div>
+<?php endif?>
+
+<?php if ($message = $flashMessenger->hasErrorMessages()) :?>
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <?php echo $this->htmlList($flashMessenger->getErrorMessages(), false, array('class' => 'list-unstyled'))?>
+    </div>
+<?php endif?>
