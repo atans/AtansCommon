@@ -7,30 +7,33 @@ if ($namespace) {
 }
 ?>
 
-<?php if ($message = $flashMessenger->hasMessages()) :?>
+<?php if ($flashMessenger->hasCurrentMessages()) :?>
     <div class="alert alert-warning">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <?php echo $this->htmlList($flashMessenger->getMessages(), false, array('class' => 'list-unstyled'))?>
+        <?php echo $this->htmlList($flashMessenger->getCurrentMessages(), false, array('class' => 'list-unstyled'))?>
     </div>
 <?php endif?>
 
-<?php if ($message = $flashMessenger->hasInfoMessages()) :?>
+
+<?php if ($flashMessenger->hasCurrentInfoMessages()) :?>
     <div class="alert alert-info">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <?php echo $this->htmlList($flashMessenger->getInfoMessages(), false, array('class' => 'list-unstyled'))?>
+        <?php echo $this->htmlList($flashMessenger->getCurrentInfoMessages(), false, array('class' => 'list-unstyled'))?>
     </div>
 <?php endif?>
 
-<?php if ($message = $flashMessenger->hasSuccessMessages()) :?>
+<?php if ($flashMessenger->hasCurrentSuccessMessages()) :?>
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <?php echo $this->htmlList($flashMessenger->getSuccessMessages(), false, array('class' => 'list-unstyled'))?>
+        <?php echo $this->htmlList($flashMessenger->getCurrentSuccessMessages(), false, array('class' => 'list-unstyled'))?>
     </div>
 <?php endif?>
 
-<?php if ($message = $flashMessenger->hasErrorMessages()) :?>
+
+<?php if ($flashMessenger->hasCurrentErrorMessages()) :?>
     <div class="alert alert-danger">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <?php echo $this->htmlList($flashMessenger->getErrorMessages(), false, array('class' => 'list-unstyled'))?>
+        <?php echo $this->htmlList($flashMessenger->getCurrentErrorMessages(), false, array('class' => 'list-unstyled'))?>
     </div>
 <?php endif?>
+
