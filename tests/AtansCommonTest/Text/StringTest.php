@@ -8,7 +8,7 @@ class StringTest extends PHPUnit_Framework_TestCase
 {
     public function testCut()
     {
-        $this->assertSame('This i...', String::cut('This is a longer text', 6), 'Test cut englist');
+        $this->assertSame('This i...', String::cut('This is a longer text', 6), 'Test cut english');
         $this->assertSame('這是一...', String::cut('這是一個測試', 3), 'Test cut chinese');
         $this->assertSame('這是一..', String::cut('這是一個測試', 3, '..'), 'Test cut append');
     }
