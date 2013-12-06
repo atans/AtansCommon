@@ -90,13 +90,13 @@ class AjaxTest extends PHPUnit_Framework_TestCase
             'Test array message'
         );
 
-        $testUndifinedMessage = new JsonModel(array(
+        $testUndefinedMessage = new JsonModel(array(
             'status' => 'ok',
             'message' => 'Message2',
             'data'    => 'data',
         ));
         $this->assertSame(
-            $this->jsonRenderer->render($testUndifinedMessage),
+            $this->jsonRenderer->render($testUndefinedMessage),
             $this->jsonRenderer->render($this->ajax->status('ok', array('message' => 'Message2', 'data' => 'data'))),
             'Test status undefined message'
         );
@@ -155,13 +155,13 @@ class AjaxTest extends PHPUnit_Framework_TestCase
             'Test success data'
         );
 
-        $testUndifinedMessage = new JsonModel(array(
+        $testUndefinedMessage = new JsonModel(array(
             'success' => true,
             'message' => 'Message2',
             'data'    => 'data',
         ));
         $this->assertSame(
-            $this->jsonRenderer->render($testUndifinedMessage),
+            $this->jsonRenderer->render($testUndefinedMessage),
             $this->jsonRenderer->render($this->ajax->success(true, array('message' => 'Message2', 'data' => 'data'))),
             'Test success undefined message'
         );
