@@ -3,7 +3,9 @@
 return array(
     'controller_plugins' => array(
         'invokables' => array(
-            'ajax' => 'AtansCommon\Controller\Plugin\Ajax',
+            'ajax'          => 'AtansCommon\Controller\Plugin\Ajax',
+            'objectManager' => 'AtansCommon\Controller\Plugin\ObjectManager',
+            'translate'     => 'AtansCommon\Controller\Plugin\Translate',
         ),
     ),
     'view_manager' => array(

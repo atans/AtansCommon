@@ -1,4 +1,5 @@
-## AtansCommon
+AtansCommon
+===========
 
 Master: [![Build Status](https://secure.travis-ci.org/atans/AtansCommon.png?branch=master)](http://travis-ci.org/atans/AtansCommon)
 
@@ -7,7 +8,9 @@ The Atans library
 - 0.1.1 (2013-8-4)
 - 0.1.2 (2013-11-12)
 
-## Ajax contoller plugin
+## Contoller plugin
+
+### Ajax plugin
 ```php
     public function textAction()
     {
@@ -51,6 +54,32 @@ The Atans library
         // Output : {"success" : true, "data" => "Retruns data"}
     }
 ```
+
+### ObjectManager plugin
+
+```php
+    public function indexAction()
+    {
+        $id = (int) $this->params()->formRoute('id', 0);
+
+        $entity = $this->objectManager()->find('Application/Entity/EntityName', $id);
+        // or
+        $entity = $this->objectManager('doctrine.entitymanager.orm_other')->find('Application/Entity/EntityName', $id);
+    }
+``
+
+### Translate plugin
+
+```php
+    public function indexAction()
+    {
+        $message = $this->translate('This is a message');
+
+        // Same as
+        $translator = $this->getServiceLocator()->get('Translate');
+        $message    = $translator->translate('This is a message');
+    }
+``
 
 
 ## String library
