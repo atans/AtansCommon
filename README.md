@@ -63,11 +63,12 @@ The Atans library
     {
         $id = (int) $this->params()->formRoute('id', 0);
 
+        // Default object manager is doctrine.entitymanager.orm_default
         $entity = $this->objectManager()->find('Application/Entity/EntityName', $id);
         // or
         $entity = $this->objectManager('doctrine.entitymanager.orm_other')->find('Application/Entity/EntityName', $id);
     }
-``
+```
 
 ### Translate plugin
 
@@ -80,7 +81,7 @@ The Atans library
         $translator = $this->getServiceLocator()->get('Translate');
         $message    = $translator->translate('This is a message');
     }
-``
+```
 
 
 ## String library
