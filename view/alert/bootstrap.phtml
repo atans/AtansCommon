@@ -1,36 +1,18 @@
 <?php
-$namespace      = isset($this->namespace) ?  $this->namespace : null;
-$flashMessenger = $this->flashMessenger()->getPluginFlashMessenger();
+$namespace      = isset($this->namespace) ? $this->namespace : null;
+$flashMessenger = $this->flashMessenger();
 
 if ($namespace) {
-    $flashMessenger->setNamespace($namespace);
+    $flashMessenger->getPluginFlashMessenger()->setNamespace($namespace);
 }
-?>
 
-<?php if ($flashMessenger->hasMessages()) :?>
-    <div class="alert alert-warning">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <?php echo $this->htmlList($flashMessenger->getMessages(), false, array('class' => 'list-unstyled'))?>
-    </div>
-<?php endif?>
+$flashMessenger->setMessageOpenFormat('<div%s>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <ul class="list-unstyled"><li>')
+    ->setMessageSeparatorString('</li><li>')
+    ->setMessageCloseString('</li></ul></div>');
 
-<?php if ($flashMessenger->hasInfoMessages()) :?>
-    <div class="alert alert-info">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <?php echo $this->htmlList($flashMessenger->getInfoMessages(), false, array('class' => 'list-unstyled'))?>
-    </div>
-<?php endif?>
-
-<?php if ($flashMessenger->hasSuccessMessages()) :?>
-    <div class="alert alert-success">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <?php echo $this->htmlList($flashMessenger->getSuccessMessages(), false, array('class' => 'list-unstyled'))?>
-    </div>
-<?php endif?>
-
-<?php if ($flashMessenger->hasErrorMessages()) :?>
-    <div class="alert alert-danger">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <?php echo $this->htmlList($flashMessenger->getErrorMessages(), false, array('class' => 'list-unstyled'))?>
-    </div>
-<?php endif?>
+echo $flashMessenger->render('error',   array('alert', 'alert-dismissable', 'alert-danger'));
+echo $flashMessenger->render('info',    array('alert', 'alert-dismissable', 'alert-info'));
+echo $flashMessenger->render('default', array('alert', 'alert-dismissable', 'alert-warning'));
+echo $flashMessenger->render('success', array('alert', 'alert-dismissable', 'alert-success'));
