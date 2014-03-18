@@ -1,13 +1,13 @@
 <?php
 namespace AtansCommon\Controller\Plugin;
 
+use Zend\I18n\Translator\TranslatorInterface;
 use Zend\Mvc\Controller\Plugin\AbstractPlugin;
-use Zend\Mvc\I18n\Translator;
 
 class Translate extends AbstractPlugin
 {
     /**
-     * @var Translator
+     * @var TranslatorInterface
      */
     protected $translator;
 
@@ -27,11 +27,11 @@ class Translate extends AbstractPlugin
     /**
      * Get translator
      *
-     * @return Translator
+     * @return TranslatorInterface
      */
     public function getTranslator()
     {
-        if (! $this->translator instanceof Translator) {
+        if (! $this->translator instanceof TranslatorInterface) {
             $this->setTranslator($this->getController()->getServiceLocator()->get('Translator'));
         }
         return $this->translator;
@@ -40,10 +40,10 @@ class Translate extends AbstractPlugin
     /**
      * Set translator
      *
-     * @param  Translator $translator
-     * @return Translator
+     * @param  TranslatorInterface $translator
+     * @return TranslatorInterface
      */
-    public function setTranslator(Translator $translator)
+    public function setTranslator(TranslatorInterface $translator)
     {
         $this->translator = $translator;
         return $this;
