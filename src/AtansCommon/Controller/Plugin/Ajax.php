@@ -142,7 +142,7 @@ class Ajax extends AbstractPlugin
         if (!is_null($data) && is_array($data) && count($data) > 0) {
             $jsonModel = $this->getJsonModel();
             foreach ($data as $key => $value) {
-                // Skip key is (status, succes), message is not a null value
+                // Skip key is (status, success), message is not a null value
                 if (
                     in_array($key, array($type)) ||
                     $key === static::KEY_MESSAGE && !is_null($jsonModel->getVariable(static::KEY_MESSAGE, null))
