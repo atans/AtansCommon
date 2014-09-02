@@ -151,7 +151,6 @@ php
 ```php
     // user/user/index.phtml
     <?php
-    if (count($this->paginator)) {
         echo $this->paginationControl(
             $this->paginator,
             'Sliding',
@@ -165,7 +164,6 @@ php
                 ),
             )
         );
-    }
     ?>
 ```
 
